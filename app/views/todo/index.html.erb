@@ -1,0 +1,43 @@
+<!-- app/views/todo/index.html.erb -->
+
+<% if notice %>
+    <%= notice %>
+<% end %>
+
+<br><br>
+
+<%= link_to 'tambah task', todo_tambah_path %>
+
+<br><br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Task</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @tasks.each_with_index do |data, index| %>
+            <tr>
+                <td><%= index+=1 %></td>
+                <td><%= data.task %></td>
+                <td><%= data.deadline %></td>
+                <td>
+                    <% if data.status? %>
+                        Selesai
+                    <% else %>
+                        Belum Selesai
+                    <% end %>
+                </td>
+                <td>
+                    <%= link_to 'Hapus', todo_destroy_path(data.id), data: { confirm: 'Ingin menghapus task ini?' }, method: :delete %>
+                    <%= link_to 'Edit', todo_edit_path(data.id) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+<!-- app/views/todo/edit.html.erb -->
+
+<%= link_to 'kembali', todo_index_path %>
+
+<br><br>
+
+<%= form_with model: @ambil_id, url: todo_update_path do |f| %>
+
+    <label>Task</label><br>
+    <%= f.text_field :task, placeholder: 'nama task' %>
+    <br><br>
+
+    <label>Deadline</label><br>
+    <%= f.date_field :deadline %>
+    <br><br>
+
+    <label>Status</label><br>
+    <%= f.select :status, [['Selesai', true], ['Belum Selesai', false]] %>
+    <br><br>
+
+    <%= f.submit 'Update' %>
+<% end %>
